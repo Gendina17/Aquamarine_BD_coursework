@@ -1,0 +1,109 @@
+<div class="input-wrapper" data-text="">
+	
+<input id="search"  type="text" placeholder="Search…" data-remote="true" name="nick_search">
+
+</div>
+<div  class="ord_form">
+<%= form_with url: "../main/platform_card", method: :get do |form| %>
+<%= form.collection_select :platform_id, Platform.order(:name).uniq { |el| el.name}, :id, :name, :include_blank => "Выберите платформу", :class => "select_send_ajax selectpicker" %>
+<%arr = []%>
+<% for i in Tag.order(:tag).uniq { |el| el.tag} do%>
+<% i.tag.capitalize!%>
+<% arr << i%>
+<% end %>
+<%= form.collection_select :tag_id, arr , :id, :tag , :include_blank => "Выберите направление", :class => "select_send_ajax selectpicker"%>
+<%= link_to  image_tag(image_path('https://w7.pngwing.com/pngs/689/150/png-transparent-black-v-chevron-corporation-computer-icons-arrow-icon-design-down-arrow-angle-rectangle-black.png'), class: "ord_img"), main_index_path(), remote: true, id: "ord" , title: 'Отсортировать по подписчикам'%>
+<%= link_to  "all", main_index_path(), remote: true, id: "all" , title: 'Отменить опциии'%>
+  <%= form.submit 'кнопка'  %>
+<% end %>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script type="text/javascript" >
+const wrapper = document.querySelector(".input-wrapper"),
+textInput = document.querySelector("input[type='text']");
+
+textInput.addEventListener("keyup", event => {
+wrapper.setAttribute("data-text", event.target.value);
+});
+
+var input = document.querySelector('input[type="text"]');
+
+input.addEventListener('keypress', function(e){
+  if(e.which === 13){
+  	e.preventDefault();
+   send_query();
+
+  }
+});
+
+
+ method_url= location.protocol + "//" + location.host +"/main/search.json"
+      function send_query(){
+      	  target = document.querySelector('#search');
+          var param_str = "?" +
+               "nick=" + target.value;
+          if (param_str == "") return false;
+           var my_JSON_object = {};
+          var http_request = new XMLHttpRequest();
+          http_request.open("GET", method_url+param_str, true);
+          http_request.onreadystatechange = function () {
+              var done = 4, ok = 200;
+              if (http_request.readyState == done &&
+                  http_request.status == ok) {
+              	 my_JSON_object =
+                      JSON.parse(http_request.responseText);
+                  result(my_JSON_object.influencers);
+              }
+          };
+          http_request.send(null);
+          return false;
+      }
+ function result(influencers){
+ target = document.querySelector('.all_card');
+ html = "";
+for (influencer of influencers) {
+html += "<a href=\"../../profile/" + influencer.id.toString() +"\"><div class=\"card\">";
+html += "<img src= '"+influencer.avatar.toString()+"' class='avatar' width=\"270\" height=\"270\">";
+html += "<div class=\"nick\"><span >@" + influencer.nick.toUpperCase().toString() + "</span></div>";
+html += "<div class=\"nick\">" + influencer.name +" "+influencer.surname + "</div>";
+html +="</div></a>";
+}
+ target.innerHTML = "";
+ target.innerHTML = html; 
+ tar = document.querySelector('#link');
+ tar.remove();
+}
+     
+ 
+    
+</script>
+
+<div class="all_card">
+	<% @influencers.each do |influencer| %>
+	<a href="../../profile/<%= influencer.id %>">
+	<div class="card">
+	<img src= '<%= influencer.avatar %>' class='avatar' width="270" height="270">
+	<div class="nick">
+	<span ><%= influencer.nick.upcase %> </span>
+</div>
+<div>
+	<% influencer.subscribers.each do |subscriber|%>
+	<% if subscriber.main%>
+	<img class='icon' src="../<%= subscriber.platform.icon%> " width="40" height="40">
+    <span class="main_count"><%= subscriber.number_of_subscribers%> +</span>
+</br></br>
+    <%else%>
+    <img class='icon' src="../<%= subscriber.platform.icon%> " width="40" height="40">
+    <span class="count"><%= subscriber.number_of_subscribers.to_i / 1000%> thou.</span>
+	<%end%>
+	<%end%>
+</div>
+</div>
+</a>
+<% end %>
+</div>
+
+<%= link_to  image_tag(image_path('стрелка.png'), class: "mini"), main_add_cards_path(), remote: true, id: "link" , title: 'Загрузить еще инфлюенсеров'%>
+<div id="lil">
+<div id="lol"></div>
+</div>

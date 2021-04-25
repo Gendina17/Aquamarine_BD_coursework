@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  platform_id: 1
+  kinds: MyString
+  influence_coefficient: 1.5
+
+two:
+  platform_id: 1
+  kinds: MyString
+  influence_coefficient: 1.5

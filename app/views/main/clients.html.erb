@@ -1,0 +1,15 @@
+<div class="all_card">
+	<% @clients.each do |client| %>
+	<a href="../../company/<%= client.id %>">
+	<div class="card_client">
+	<span class="name_client" ><%= client.name.upcase %> </span>
+	<img title="Познакомиться поближе с <%= client.name.upcase %> " src= '<%= client.avatar %>' class='avatar_client' width="500" height="250">
+</div>
+</a>
+<% end %>
+</div>
+
+<%= link_to  image_tag(image_path('стрелка.png'), class: "mini"), main_add_clients_path(), remote: true, id: "link" , title: 'Загрузить еще компаний'%>
+<div id="lil">
+<div id="lol"></div>
+</div>

@@ -1,0 +1,36 @@
+<div id="client_page">
+<div id="client_prof">
+	<div id="client_name"><%= @client.name%></div>
+	<hr>
+<div>
+	<img id="client_avatar" src="<%= @client.avatar%>" width="800" >
+</div>
+<hr>
+<div id="about_company_tit">About company:</div>
+<div id="about_company">
+
+	Industry: <%= @client.industry%><br>
+	We cooperate since <%= @client.start_of_cooperation%><br>
+	<%= @client.successful_orders%> successful orders completed<br>
+	Curator: <%= @client.staff.name%> <%= @client.staff.surname%>
+</div>
+</div>
+<span id="order" style="padding-left: 95px;">Рекламные заказы:</span>
+<div class="horizontal-scroll-wrapper-c squares-c par client_scroll">
+	<% @client.orders.each do |order|%>
+	<div>
+		<div id="product"><%= order.product%> </div>
+		<div id="type_product">(<%= order.type_product%>)</div>
+		<div id="platf_kind">
+			<%= order.advertesiment_kind.kinds%> in <%= order.advertesiment_kind.platform.name%>
+		</div>
+		
+		<div class="coorator">Influencers:</div>
+		<% order.influencers.each do |influencer|%>
+		<a href="../../profile/<%= influencer.id %>" id="to_comp">  <div id="inf_nick">@<%= influencer.nick%></div> </a>
+		<%end%>
+		<div class="coorator">Curator: <span id="st_name"> <%= order.staff.name%></span></div>
+	</div>
+	<%end%>
+	</div>
+</div>

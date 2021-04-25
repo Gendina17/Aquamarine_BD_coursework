@@ -1,0 +1,15 @@
+html = "";
+html += "<div class=\"all_cards\">";
+<% @clients.each do |client| %>
+html += "<a href=\"../../company/<%= client.id %>\"><div class=\"card_client\"><span class=\"name_client\" ><%= client.name.upcase %> </span><img title=\"Познакомиться поближе с <%= client.name.upcase %> \" src= '<%= client.avatar %>' class='avatar_client' width=\"500\" height=\"250\"></div></a>";
+<% end %>
+html += '</div>';
+
+ div = document.createElement('div');
+div.innerHTML = html;
+ target = document.querySelector('#link');
+ tar = document.querySelector('#lol');
+tar.appendChild(div);
+target.remove();
+ ta = document.querySelector('#lil');
+ta.appendChild(target);
