@@ -1,5 +1,5 @@
 html = "";
-html += "<div class=\"all_cards\">";
+html += "<div class=\"all_cards_o\">";
 <% @orders.each do |order| %>
 	html += "<div class=\"card_order\" onclick=\"addCard(this)\" data-toggle=\"modal\" data-target=\"#exampleModal\"><div class=\"order_name\"><%= order.product%></div><div class=\"order_type\">(<%= order.type_product%>)</div>";
 	html += "<div class=\"order_type\"><%= order.advertesiment_kind.kinds%> in <%= order.advertesiment_kind.platform.type_of_activity%> of <img id=\"ic\" src=\"<%= order.advertesiment_kind.platform.icon%> \" height=\"35px\"></div><div class=\"order_curator\" ><span class=\"for\">Curator: </span><%= order.staff.name%> <%= order.staff.surname%></div>";

@@ -54,7 +54,7 @@ body, p, ol, ul, td {
 }
 .closing-button:before {
   transform: translateX(-100%);
-  background: white;
+  
   transition: transform .3s cubic-bezier(.55, .055, .675, .19);
 }
 .closing-button:after {
@@ -66,7 +66,7 @@ body, p, ol, ul, td {
   transform: translateX(0);
 }
 #cite_but {
-  margin-right: 440px;
+  margin-right: 300px;
 }
 .footer_name {
   font-size: 3em;
@@ -110,6 +110,10 @@ body, p, ol, ul, td {
   position: relative;
   margin-top: 70px;
 }
+#p4 {
+  position: relative;
+  margin-top: 25px;
+}
 #new_company {
   position: absolute;
   margin-top: 45px;
@@ -143,13 +147,16 @@ pre {
 }
 
 .all_card {
-  padding-top: 50px;
+  padding-top: 20px;
   padding-left: 330px;
   padding-bottom: 10px;
 }
-.all_cards {
-  padding-left: 330px;
+.all_cards_o {
+  padding-top: 20px;
+  margin-left: 190px;
+  padding-bottom: 10px;
 }
+
 
 .nick {
   text-align: center;
@@ -375,6 +382,7 @@ $s: 170px;
   padding-left: 55px;
   line-height: 33px;
   padding-bottom: 20px;
+  color: black;
 }
 #about_company_tit {
   font-size: 160%;
@@ -505,14 +513,14 @@ $finalWidth_c: 3 * $finalHeight_c  + 110;
  padding-left: 3px;
   padding-top: 8px;
   font-weight: 550;
+  display: inline-block;
 }
 #inf_nick {
  font-size: 120%;
-  
  padding-left: 18px;
  padding-top: 5px;
 }
-#st_name {
+.st_name {
   font-weight: 500;
 }
 .coorator_p {
@@ -564,6 +572,7 @@ $finalWidth_c: 3 * $finalHeight_c  + 110;
   padding-top: 20px;
   padding-left: 190px;
   padding-bottom: 10px;
+  padding-left: 330px;
 }
 .card_order:hover {
   transform: scale(1.1);
@@ -660,11 +669,11 @@ $finalWidth_c: 3 * $finalHeight_c  + 110;
   margin-top: 15px;
 }
 .arlow {
-  width: 30px;
-  transform: rotate(180deg);
+  width: 20px;
+  margin-left: 6px;
 }
 .arlow:hover {
-     transform: rotate(0deg);
+     transform: rotate(180deg);
 }
 #title_sort {
   font-size: 130%;
@@ -679,10 +688,10 @@ $finalWidth_c: 3 * $finalHeight_c  + 110;
    background-color: #ededed ;
 }
 .transform {
-  transform: rotate(0deg);
+  transform: rotate(180deg);
 }
 .transform:hover {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 #help {
    border-left: 2px solid grey;
@@ -840,15 +849,81 @@ html *::-webkit-scrollbar-thumb {
   background-color:  #f5f5dc;
 }
 .curator_avatar {
+  width: 400px;
+   height: 400px;
+   display: inline-block;
+}
+.curator_avatar_litl {
   width: 200px;
    height: 200px;
    display: inline-block;
-
+}
+.big {
+   width: 500px;
+   height: 500px;
+   display: inline-block;
 }
 .curator_info {
   display: inline-block;
+  line-height : 2;
+}
+.curator_inf {
+  display: inline-block;
+  line-height : 2.5;
+}
+#cur_name {
+   font-size: 150%;
+   font-weight: 550px;
+}
+.name_c {
+margin-left: 30px;
 
 }
-.сolo_st {
-  background-color: white !important;
+
+#our_clients {
+  margin-left: 360px;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  z-index: 5;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 250%;
+  margin-top: 100px;
+  padding-bottom: 20px;
+  width: 700px;
+  border-bottom: 1px solid lightgrey;
+  color: grey;
+}
+.best {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  z-index: 5;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 250%;
+  margin-top: 50px;
+  margin-left: 30px;
+  padding-bottom: 20px;
+  width: 700px;
+  border-bottom: 1px solid lightgrey;
+  color: grey;
+}
+
+
+.to_comp {
+   text-decoration: none;
+   color: black;
+    font-size: 120%;
+ padding-left: 3px;
+  padding-top: 8px;
+  display: inline-block;
+}
+
+.to_comp_t {
+   text-decoration: none;
+   color: black;
+    
+}
+.to_comp_t:hover {
+   color: #2c75ff;
 }

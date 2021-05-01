@@ -43,6 +43,7 @@ end
     id = params[:id].to_i
     if id.to_s =~ /\A[0-9]+\Z/
       if (@client = Company.find_by_id(id))
+         @curator = Staff.find_by_id(@client.staff.id)
       else
         render :error
       end
@@ -127,7 +128,8 @@ def platform_card
     end
 end
 def curators
-  @curators = Staff.take(20)
+  @curators = Staff.order(number_of_orders: :desc, work_experience: :desc).limit(20)
   end
+ 
 
 end
