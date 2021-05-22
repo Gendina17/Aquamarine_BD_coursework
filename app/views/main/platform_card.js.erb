@@ -3,8 +3,8 @@ html = "";
 <% @influencers.each do |influencer| %>
 html += "<a href=\"../../profile/<%= influencer.id %>\"><div class=\"card\">";
 html += "<img src= '<%= influencer.avatar %>' class='avatar' width=\"270\" height=\"270\"><div class=\"nick\"><span ><%= influencer.nick.upcase %> </span></div>";
-html += "<div><% influencer.subscribers.each do |subscriber|%><% if subscriber.main%><img class='icon' src=\"<%= subscriber.platform.icon%> \" width=\"40\" height=\"40\"><span class=\"main_count\"><%= subscriber.number_of_subscribers%> +</span></br></br><%else%>";
-html +="<img class='icon' src=\"<%= subscriber.platform.icon%> \" width=\"40\" height=\"40\"><span class=\"count\"><%= subscriber.number_of_subscribers.to_i / 1000%> thou.</span><%end%><%end%></div></div></a>";
+html += "<div><% influencer.subscribers.each do |subscriber|%><% if subscriber.main%><img class='icon' src=\"../../<%= subscriber.platform.icon%> \" width=\"40\" height=\"40\"><span class=\"main_count\"><%= subscriber.number_of_subscribers%> +</span></br></br><%else%>";
+html +="<img class='icon' src=\"../../<%= subscriber.platform.icon%> \" width=\"40\" height=\"40\"><span class=\"count\"><%= subscriber.number_of_subscribers.to_i / 1000%> thou.</span><%end%><%end%></div></div></a>";
 <% end %>
 
 
@@ -12,4 +12,10 @@ html +="<img class='icon' src=\"<%= subscriber.platform.icon%> \" width=\"40\" h
  target.innerHTML = html; 
  tar = document.querySelector('#link');
  tar.remove();
-
+ // document.querySelector('#tag_id').remove();
+  document.querySelector('.input-wrapper').remove();
+   document.querySelector('#platform_id').style.marginLeft="10px";
+   document.querySelector('#platform_id').style.marginTop="150px";
+   document.querySelector('#ord').style.display="inline-block";
+ document.querySelector('#all').style.display="inline-block";
+ document.querySelector('#all').style.marginLeft="20px";

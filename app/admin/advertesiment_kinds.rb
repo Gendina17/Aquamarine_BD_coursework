@@ -21,11 +21,13 @@ ActiveAdmin.register AdvertesimentKind do
     id_column
     column :kinds
     column :platform_id
+    column :influence_coefficient
     actions
   end
 
   filter :kinds
   filter :platform_id
+  filter :influence_coefficient
   
 
   form do |f|

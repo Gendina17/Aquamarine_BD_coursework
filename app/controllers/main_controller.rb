@@ -3,6 +3,8 @@ class MainController < ApplicationController
   @@current = 0
   @@key = true
   @@number_orders = 20
+  @@value = ""
+  @@tag = ""
   def self.current()
     @@current
 end
@@ -10,7 +12,6 @@ def self.influencers()
     @@influencers
 end
   def index
-    
      end
 
   def show
@@ -119,17 +120,89 @@ end
   end
 
 def platform_card
+  @sort = params[:sort]
   @value = params[:platform_id]
+  @tag = params[:tag_id]
   @influencers = []
-  Subscriber.where(' "platform_id" = ?', @value).order(:main).reverse_order.take(30).map {|cur| @influencers << Influencer.find_by_id(cur.influencer_id)}
+if (@sort == "0")
+  @value = params[:platform_id]
+  @tag = params[:tag_id]
+  @@value = @value
+  @@tag = @tag
+  if (@value != "" and @tag == "")
+  Subscriber.where(' "platform_id" = ? and "main" = ? ', @value, "true").order("number_of_subscribers DESC").take(100).map {|cur| @influencers << Influencer.find_by_id(cur.influencer_id)}
+elsif (@value == "" and @tag != "")
+  @tag = Tag.find_by_id(@tag).tag
+  Tag.where(' "tag" = ? ', @tag).take(100).map {|cur| @influencers << Influencer.find_by_id(cur.influencer_id)}
+else
+#   ar_t = []
+   ar_s = []
+# Subscriber.where(' "platform_id" = ? and "main" = ? ', @value, "true").order("number_of_subscribers DESC").map {|cur| ar_s << Influencer.find_by_id(cur.influencer_id)}
+# Tag.where(' "tag" = ? ', @tag).map {|cur| ar_t << Influencer.find_by_id(cur.influencer_id)}
+# @influencers = ar_t & ar_s
+# @influencers = @influencers.take()
+# @tag = Tag.find_by_id(@tag).tag
+#  query = "SELECT influencers.*
+#           FROM influencers, tags, subscribers
+#           WHERE tags.tag = #{@tag} and tags.influencers_id = influencers.id and subscribers.platform_id = #{@value}"
+#       @influencers = ActiveRecord::Base.connection.exec_query(query)
+Subscriber.where(' "platform_id" = ? and "main" = ? ', @value, "true").order("number_of_subscribers DESC").take(500).map {|cur| ar_s << Influencer.find_by_id(cur.influencer_id)}
+@tag = Tag.find_by_id(@tag).tag
+ar_s.map do |el|
+  key = 0
+  Tag.where(' "influencer_id" = ? ', el.id).map do |el2|
+    if (el2.tag == @tag)
+      key = 1
+    end
+  end
+  if (key == 1)
+    @influencers << el
+  end
+end
+end
+else
+  if (@@value != "" and @@tag == "")
+  Subscriber.where(' "platform_id" = ? and "main" = ? ', @@value, "true").order("number_of_subscribers").take(100).map {|cur| @influencers << Influencer.find_by_id(cur.influencer_id)}
+elsif (@@value == "" and @@tag != "")
+  @@tag = Tag.find_by_id(@@tag).tag
+  Tag.where(' "tag" = ? ', @@tag).take(100).map {|cur| @influencers << Influencer.find_by_id(cur.influencer_id)}
+else
+#   ar_t = []
+   ar_s = []
+# Subscriber.where(' "platform_id" = ? and "main" = ? ', @value, "true").order("number_of_subscribers DESC").map {|cur| ar_s << Influencer.find_by_id(cur.influencer_id)}
+# Tag.where(' "tag" = ? ', @tag).map {|cur| ar_t << Influencer.find_by_id(cur.influencer_id)}
+# @influencers = ar_t & ar_s
+# @influencers = @influencers.take()
+# @tag = Tag.find_by_id(@tag).tag
+#  query = "SELECT influencers.*
+#           FROM influencers, tags, subscribers
+#           WHERE tags.tag = #{@tag} and tags.influencers_id = influencers.id and subscribers.platform_id = #{@value}"
+#       @influencers = ActiveRecord::Base.connection.exec_query(query)
+Subscriber.where(' "platform_id" = ? and "main" = ? ', @@value, "true").order("number_of_subscribers").take(500).map {|cur| ar_s << Influencer.find_by_id(cur.influencer_id)}
+@@tag = Tag.find_by_id(@@tag).tag
+ar_s.map do |el|
+  key = 0
+  Tag.where(' "influencer_id" = ? ', el.id).map do |el2|
+    if (el2.tag == @@tag)
+      key = 1
+    end
+  end
+  if (key == 1)
+    @influencers << el
+  end
+end
+end
+end
 
   respond_to do |format|
       format.js
     end
 end
+
 def curators
   @curators = Staff.order(number_of_orders: :desc, work_experience: :desc).limit(20)
   end
  
+
 
 end

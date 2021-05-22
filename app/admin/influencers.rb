@@ -20,17 +20,28 @@ ActiveAdmin.register Influencer do
   index do
     selectable_column
     id_column
-    column :name
-    #column :current_sign_in_at
-    #column :sign_in_count
-    column :created_at
+      column :name
+      column :surname
+      column :nick
+      column :mail
+      column :birthday
+     
+      column :city
+      
+      column :age_of_subscribers
     actions
   end
 
-  filter :name
-  #filter :current_sign_in_at
-  #filter :sign_in_count
-  filter :created_at
+      filter :name
+      filter :surname
+      filter :nick
+      filter :mail
+      filter :birthday
+    
+      filter :city
+     
+      filter :age_of_subscribers
+  
 
   form do |f|
     f.inputs do

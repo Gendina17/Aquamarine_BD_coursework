@@ -22,12 +22,16 @@ ActiveAdmin.register Price do
     column :advertesiment_kind_id
     column :influencer_id
     column :price
+    column :discount
+    column :coefficient
     actions
   end
 
   filter :advertesiment_kind_id
   filter :influencer_id
   filter :price
+  filter :discount
+  filter :coefficient
   
 
   form do |f|

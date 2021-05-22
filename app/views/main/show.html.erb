@@ -5,16 +5,18 @@
 </div>
 <div  class="ord_form">
 <%= form_with url: "../main/platform_card", method: :get do |form| %>
-<%= form.collection_select :platform_id, Platform.order(:name).uniq { |el| el.name}, :id, :name, :include_blank => "Выберите платформу", :class => "select_send_ajax selectpicker" %>
+<%= form.collection_select :platform_id, Platform.order(:name).uniq { |el| el.name}, :id, :name, :include_blank => "Выберите платформу", :class => "select_send_ajax selectpicker", :id => "collect_platform" %>
 <%arr = []%>
 <% for i in Tag.order(:tag).uniq { |el| el.tag} do%>
 <% i.tag.capitalize!%>
 <% arr << i%>
 <% end %>
-<%= form.collection_select :tag_id, arr , :id, :tag , :include_blank => "Выберите направление", :class => "select_send_ajax selectpicker"%>
-<%= link_to  image_tag(image_path('https://w7.pngwing.com/pngs/689/150/png-transparent-black-v-chevron-corporation-computer-icons-arrow-icon-design-down-arrow-angle-rectangle-black.png'), class: "ord_img"), main_index_path(), remote: true, id: "ord" , title: 'Отсортировать по подписчикам'%>
-<%= link_to  "all", main_index_path(), remote: true, id: "all" , title: 'Отменить опциии'%>
-  <%= form.submit 'кнопка'  %>
+<%= form.hidden_field :sort, value: "0" %>
+<%= form.collection_select :tag_id, arr , :id, :tag , :include_blank => "Выберите направление", :class => "select_send_ajax selectpicker", :id => "collect_tag"%>
+<%= link_to  image_tag(image_path('https://static.tildacdn.com/tild3235-6338-4830-a134-393966613234/chevron-vector-style.png'), class: "ord_img"), main_platform_card_path(params: { sort:"1" }), remote: true, id: "ord" , title: 'Отсортировать по подписчикам'%>
+<%= link_to  "all", main_show_path(), id: "all" , title: 'Отменить опциии'%>
+
+ <%= form.submit 'GO', id:"dd"%>
 <% end %>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
@@ -61,17 +63,28 @@ input.addEventListener('keypress', function(e){
  function result(influencers){
  target = document.querySelector('.all_card');
  html = "";
-for (influencer of influencers) {
-html += "<a href=\"../../profile/" + influencer.id.toString() +"\"><div class=\"card\">";
+ if (influencers.length == 0) {
+  html += "<div id=\"sorry\"> К сожалению, ни один инфлюенсер не найден </div>";
+ } else {
+  for (influencer of influencers) {
+html += "<a href=\"../../profile/" + influencer.id.toString() +"\"><div class=\" small_card card \">";
 html += "<img src= '"+influencer.avatar.toString()+"' class='avatar' width=\"270\" height=\"270\">";
 html += "<div class=\"nick\"><span >@" + influencer.nick.toUpperCase().toString() + "</span></div>";
 html += "<div class=\"nick\">" + influencer.name +" "+influencer.surname + "</div>";
 html +="</div></a>";
 }
+ }
+
  target.innerHTML = "";
  target.innerHTML = html; 
  tar = document.querySelector('#link');
  tar.remove();
+  document.querySelector('#knopka').remove();
+ document.querySelector('#ord').remove();
+ document.querySelector('#platform_id').remove();
+ document.querySelector('#tag_id').remove();
+ document.querySelector('#all').style.display="block";
+ document.querySelector('#all').style.marginLeft="400px";
 }
      
  

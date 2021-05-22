@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'main/search'
   get 'main/platform_card'
   get 'main/curators'
+  post 'main/create'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

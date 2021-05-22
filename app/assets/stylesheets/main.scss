@@ -131,9 +131,9 @@ pre {
   box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
   overflow:hidden;
   width: 330px;
-  height: 480px;
+  height: 500px;
   max-width: 330px;
-  max-height: 480px;
+  max-height: 500px;
 }
 
 .card:hover {
@@ -796,26 +796,12 @@ html * /* override x.xhtml.ru style */
   scrollbar-color: blue orange;
 }
 
-*::-webkit-scrollbar,
-html *::-webkit-scrollbar {
-  height: 200px;
-  width: 10px;
-}
-*::-webkit-scrollbar-track,
-html *::-webkit-scrollbar-track {
-  background: lightgrey;
-}
-*::-webkit-scrollbar-thumb,
-html *::-webkit-scrollbar-thumb {
-  background-color: lightgrey;
-  border-radius: 2px;
-  border: 1px solid black;
-}
+
 .ord_form {
  margin-left: 500px;
 }
 
-#all, #ord {
+#all, #ord, #go {
     display: inline-block;
     margin-left: 20px;
     padding: 18px;
@@ -926,4 +912,57 @@ margin-left: 30px;
 }
 .to_comp_t:hover {
    color: #2c75ff;
+}
+.small_card {
+	 height: 430px !important;
+	 color: black;
+
+}
+.small_card:hover {
+	color: red;
+	-webkit-text-stroke: .07em rgba(0,0,0,.3);
+}
+#all:hover, #dd:hover  {
+	transform: scale(1.2);
+}
+#all {
+	display: none;
+}
+#sorry {
+	font-size: 1.9em;
+	margin-left: 340px;
+	margin-top: 50px;
+	padding-bottom: 50px;
+}
+
+#ord:hover{
+     transform: rotate(180deg);
+}
+#ord {
+	display: none;
+}
+#dd {
+	background: none;
+	border: none;
+	box-shadow: none;
+	shadow: none;
+    outline: none; 
+    display: inline-block;
+    margin-left: 20px;
+    padding: 18px;
+    text-color: black;
+    text-decoration: none !important;
+    border: 1px solid grey; 
+    border-radius: 100%;
+    font-size: 1.5rem;
+    color: #444;
+    font-family: 'Montserrat', sans-serif;
+  position: relative;
+  z-index: 5;
+   letter-spacing: 1.5px;
+   width: 60px;
+   height: 60px;
+   font-weight: 400;
+   appearance: none;
+   font: inherit;
 }

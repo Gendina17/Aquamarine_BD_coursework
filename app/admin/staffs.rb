@@ -21,17 +21,21 @@ ActiveAdmin.register Staff do
     id_column
     column :name
     column :surname
-    #column :current_sign_in_at
-    #column :sign_in_count
-    column :created_at
+    column :work_experience
+    column :position
+    column :number_of_orders
+    column :mail
+    
     actions
   end
 
   filter :name
   filter :surname
-  #filter :current_sign_in_at
-  #filter :sign_in_count
-  filter :created_at
+  filter :work_experience
+  filter :position
+  filter :number_of_orders
+  filter :mail
+  
 
   form do |f|
     f.inputs do
