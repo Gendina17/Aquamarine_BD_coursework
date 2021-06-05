@@ -1,42 +1,36 @@
 <script type="text/javascript">
-  VK.init({
-    apiId: ВАШ_API_ID,
-    onlyWidgets: true
-  });
+	VK.init({
+		apiId: ВАШ_API_ID,
+		onlyWidgets: true
+	});
 </script>
+
 <div id="main_cnt">
 <div class="contuct_block contacts_adress ">
 	<div id="title_cont">Контакты</div>
 	<hr>
 	<div class="tit2">По вопросам рекламы</div>
 	<div class="tel_mail">
-	<img src="../assets/tel.png" width = "30" height = "30" > +7 (985) 271-44-07 <br>
-	<img src="../assets/mail.png" width = "30" height = "30"> gendina.nina@mail.ru<br>
+		<img src="../assets/tel.png" width = "30" height = "30" > +7 (985) 271-44-07 <br>
+		<img src="../assets/mail.png" width = "30" height = "30"> gendina.nina@mail.ru<br>
 	</div>
 	
 	<div class="tit2">Для прессы</div>
 	<div class="tel_mail">
-    <img src="../assets/tel.png" width = "30" height = "30" > +7 (916) 742-27-75 <br>
-	<img src="../assets/mail.png" width = "30" height = "30"> gendina.ninel@yandex.ru<br>
-    </div>
+		<img src="../assets/tel.png" width = "30" height = "30" > +7 (916) 742-27-75 <br>
+		<img src="../assets/mail.png" width = "30" height = "30"> gendina.ninel@yandex.ru<br>
+	</div>
 	<div id="addr"><img src="../assets/loc.png" width = "30" height = "30"> 3-я Гражданская ул., 4 </div>
-<div class="tit2">
-	Для связи с генеральным директором:
+	<div class="tit2">
+		Для связи с генеральным директором:
+	</div>
+	<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+	<div class="tel_mail" id="vk_subscribe"></div>
+	<script type="text/javascript">
+	VK.Widgets.Subscribe("vk_subscribe", {}, 131991696);
+	</script>
 </div>
-<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
-
-
-
-<div class="tel_mail" id="vk_subscribe"></div>
-
-<script type="text/javascript">
-VK.Widgets.Subscribe("vk_subscribe", {}, 131991696);
-</script>
-</div>
-
-
 <div class="contuct_block map" style="background:url('../assets/узор.png'); height: 700px;">
-<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aac601558753778af6e1dcc86988717588a6e2e788b459f87c1c1a643986477a0&amp;width=575&amp;height=458&amp;lang=ru_RU&amp;scroll=true"></script>
-
+	<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aac601558753778af6e1dcc86988717588a6e2e788b459f87c1c1a643986477a0&amp;width=575&amp;height=458&amp;lang=ru_RU&amp;scroll=true"></script>
 </div>
 </div>

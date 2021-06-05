@@ -2,14 +2,14 @@
 	<div class="best" >Лучшие сотрудники</div>
 	<%@curators.each do |curator|%>
 	<div class="card_staff" style="background:url('../assets/узор.png'); height: 3000px; border: 1px solid lightgrey;">
-	<img src="<%=curator.avatar%>" class="curator_avatar_litl" >
-	<div class="curator_info">
-	<div class="name_c"><strong><%=curator.name%> <%=curator.surname%></strong></div>
-Position: <%=curator.position%><br>
-Work experience: <%=curator.work_experience%><br>
-Number of orders: <%=curator.number_of_orders%><br>
-<%=curator.mail%><br>
-</div>
+		<img src="<%=curator.avatar%>" class="curator_avatar_litl" >
+		<div class="curator_info">
+			<div class="name_c"><strong><%=curator.name%> <%=curator.surname%></strong></div>
+			Position: <%=curator.position%><br>
+			Work experience: <%=curator.work_experience%><br>
+			Number of orders: <%=curator.number_of_orders%><br>
+			<%=curator.mail%><br>
+		</div>
 	</div>
 	<%end%>
 </div>

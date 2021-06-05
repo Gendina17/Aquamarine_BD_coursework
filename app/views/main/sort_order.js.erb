@@ -1,32 +1,32 @@
 html = "";
 <% @orders.each do |order| %>
-	html += "<div class=\"card_order\" onclick=\"addCard(this)\" data-toggle=\"modal\" data-target=\"#exampleModal\"><div class=\"order_name\"><%= order.product%></div><div class=\"order_type\">(<%= order.type_product%>)</div>";
-	html += "<div class=\"order_type\"><%= order.advertesiment_kind.kinds%> in <%= order.advertesiment_kind.platform.type_of_activity%> of <img id=\"ic\" src=\"<%= order.advertesiment_kind.platform.icon%> \" height=\"35px\"></div><div class=\"order_curator\" ><span class=\"for\">Curator: </span><%= order.staff.name%> <%= order.staff.surname%></div>";
-	html += "<div class=\"for order_curator mar\">Participants: </div>";
-	<%total = 0%>
-	<% order.influencers.each do |influencer|%>
-	html += "<div id=\"inf_nick\" class=\"marg\">@<%= influencer.nick%></div>";
+  html += "<div class=\"card_order\" onclick=\"addCard(this)\" data-toggle=\"modal\" data-target=\"#exampleModal\"><div class=\"order_name\"><%= order.product%></div><div class=\"order_type\">(<%= order.type_product%>)</div>";
+  html += "<div class=\"order_type\"><%= order.advertesiment_kind.kinds%> in <%= order.advertesiment_kind.platform.type_of_activity%> of <img id=\"ic\" src=\"<%= order.advertesiment_kind.platform.icon%> \" height=\"35px\"></div><div class=\"order_curator\" ><span class=\"for\">Curator: </span><%= order.staff.name%> <%= order.staff.surname%></div>";
+  html += "<div class=\"for order_curator mar\">Participants: </div>";
+  <%total = 0%>
+  <% order.influencers.each do |influencer|%>
+    html += "<div id=\"inf_nick\" class=\"marg\">@<%= influencer.nick%></div>";
     <%total += Price.find_by_influencer_id_and_advertesiment_kind_id(influencer.id, order.advertesiment_kind_id).price%>
-    <%end%>
-    <%total_str=""%>
-    <% total_str = (total / 1000000).to_s if (total / 1000000) != 0%>
-    <%total_str += " "%>
-    <% total_str += ((total - (total / 1000000)*1000000) / 1000).to_s%>
-    <% total_str += "00" if ((total - (total / 1000000)*1000000) / 1000) == 0%>
-    <%total_str += " "%>
-    <% total_str += "000"%>
-    html += "<div class=\"order_curator \" ><span class=\"for\">Total cost: </span><%= total_str%> rub.</div><div class=\"order_curator\" ><span class=\"for\">Date: </span> <%= order.date_order%></div>";
-    html += "<div class=\"order_type\">for  <img id=\"avat_comp\" src=\"<%= order.company.avatar%> \" height=\"30px\" width=\"80\"></div></div>";
+  <%end%>
+  <%total_str=""%>
+  <% total_str = (total / 1000000).to_s if (total / 1000000) != 0%>
+  <%total_str += " "%>
+  <% total_str += ((total - (total / 1000000)*1000000) / 1000).to_s%>
+  <% total_str += "00" if ((total - (total / 1000000)*1000000) / 1000) == 0%>
+  <%total_str += " "%>
+  <% total_str += "000"%>
+  html += "<div class=\"order_curator \" ><span class=\"for\">Total cost: </span><%= total_str%> rub.</div><div class=\"order_curator\" ><span class=\"for\">Date: </span> <%= order.date_order%></div>";
+  html += "<div class=\"order_type\">for  <img id=\"avat_comp\" src=\"<%= order.company.avatar%> \" height=\"30px\" width=\"80\"></div></div>";
 <%end%>
 
 elem = document.querySelector('#arlow');
 elem.classList.toggle("transform");
-
 elements = document.getElementsByClassName('all_cards_o');
-  for (elemt of elements) {
-     elemt.innerHTML = "";
-  }
- first = document.querySelector('.first');
 
- first.innerHTML = html;
- elem.css({transform: 'rotate(-' + '180' + 'deg)'});
+for (elemt of elements) {
+     elemt.innerHTML = "";
+   }
+
+first = document.querySelector('.first');
+first.innerHTML = html;
+elem.css({transform: 'rotate(-' + '180' + 'deg)'});

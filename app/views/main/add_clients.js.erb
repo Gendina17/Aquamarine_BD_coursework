@@ -5,11 +5,11 @@ html += "<a href=\"../../company/<%= client.id %>\"><div class=\"card_client\"><
 <% end %>
 html += '</div>';
 
- div = document.createElement('div');
+div = document.createElement('div');
 div.innerHTML = html;
- target = document.querySelector('#link');
- tar = document.querySelector('#lol');
+target = document.querySelector('#link');
+tar = document.querySelector('#lol');
 tar.appendChild(div);
 target.remove();
- ta = document.querySelector('#lil');
+ta = document.querySelector('#lil');
 ta.appendChild(target);
